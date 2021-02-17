@@ -3,8 +3,9 @@ import express from 'express';
 const app = express();
 const port = 8055;
 
-app.get('/ping', (req,res)=> res.send('pong'));
+//test
 
+app.get('/ping', (req,res)=> res.send('pong'));
 
 app.get('/heartbeat', (req,res)=> res.send({datetime: new Date().toJSON()}));
 
