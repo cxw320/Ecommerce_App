@@ -30,6 +30,29 @@ app.get('/v1/products/:id', async (req, res)=>{
     }
 });
 
+app.post('/v1/products', async (req, res)=>{
+    const product = await ProductModel.create(req.body);
+    if(product){
+        res.status(200).end;
+    }else {
+        res.status(500);
+    }
+});
+
+//Does not return a promise
+app.put('/v1/products/:id', (req, res)=>{
+    ProductModel.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        (err) => {
+            if(err){
+                res.status(500).end();
+            } else{
+                res.status(200).end();
+            }
+        }
+    );
+});
 
 
 app.get('/v1/users', async (req, res) =>{
@@ -38,6 +61,7 @@ app.get('/v1/users', async (req, res) =>{
 });
 
 app.post('/v1/users', (req, res) => {
+    //TODO: IMPLEMENT
     const username = req.body.username;
     const email = req.body.email;
     const role = req.body.role;
@@ -46,7 +70,10 @@ app.post('/v1/users', (req, res) => {
   //  res.send(users);
 });
 
+
+
 app.put('/v1/users/:id', (req, res) => {
+    //TODO: IMPLEMENT
     const id = req.params.id;
     const username = req.body.username;
     const email = req.body.email;
