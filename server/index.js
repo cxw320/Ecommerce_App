@@ -12,7 +12,19 @@ app.use(bodyParser.urlencoded({extended:true}));
 const port = 8055;
 
 app.get('/v1/products', async (req, res) =>{
-    const products = await ProductModel.find() || [];
+
+    // filter component below
+    const {categories} = req.query;
+    // This is done explicitly because if we do it on an empty string, it does not return an empty array - but an array with an empty string
+    // MongoDB will be searching for a blank string category if we leave this as be, so we have to address with a condition
+    // If the list of categories is empty, we will provide the $in object - a special keyword in MongoDB language
+    // It will tell MongoDB to pull any category from the category list array we provided
+    const categoryList = categories ? categories.split(','): [];
+    const products = await ProductModel.find(
+        categoryList.length > 0 ?
+            { categories: {$in: categoryList}} :
+            undefined
+    ) || [];
     res.send(products);
 });
 
@@ -44,6 +56,19 @@ app.put('/v1/products/:id', (req, res)=>{
     ProductModel.findByIdAndUpdate(
         req.params.id,
         req.body,
+        (err) => {
+            if(err){
+                res.status(500).end();
+            } else{
+                res.status(200).end();
+            }
+        }
+    );
+});
+
+app.delete('/v1/products/:id', (req, res)=>{
+    ProductModel.findByIdAndDelete(
+        req.params.id,
         (err) => {
             if(err){
                 res.status(500).end();
