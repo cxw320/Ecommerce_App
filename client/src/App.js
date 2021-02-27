@@ -2,24 +2,59 @@ import { render, screen } from '@testing-library/react';
 
 import React, {Component} from 'react';
 import ProductCard from './components/ProductCard';
-
-const images = [
-  'https://cdn.shopify.com/s/files/1/0204/7208/products/IMG_2111_c1fe0803-f19c-4971-919d-62eeb71ed3bf_620x.jpg?v=1574787075',
-  'https://cdn.shopify.com/s/files/1/0204/7208/products/IMG_2125_e3da5891-98e2-461a-9d94-788dcac1b7c8.jpg?v=1574787075'
-      
-];
+import products from './data/products.js';
+import ProductList from './components/ProductList';
+import './App.css';
+import BaseInput from './components/inputs/BaseInput.js';
+import TextInput from './components/inputs/TextInput';
+import PasswordInput from './components/inputs/PasswordInput';
+import CheckboxInput from './components/inputs/CheckboxInputs';
 
 class App extends Component {
    // state lifting, bringing the state from children to parent component
+   //input controls: onChange , target = the dom element
+
+   state = { firstName: '',
+             lastName: '', 
+             password: '',
+             sendEmail: true,
+    };
+
+   handleChange = e => {
+     this.setState({ [e.target.name]: e.target.value});
+   };
+
   render(){
 
+    //need a key prop, a unique value that is consistent across re-renders
       return (
         <div className="App">
 
-          <ProductCard 
-            images={images}
-            name="Product XYZ"
-            price="49.99"/>
+          <TextInput 
+            value={this.state.firstName}
+            name="firstName"
+            onChange={this.handleChange} 
+            />
+
+          <TextInput 
+            value={this.state.lastName}
+            name="lastName"
+            onChange={this.handleChange} 
+            />
+
+          <TextInput 
+            value={this.state.password}
+            name="password"
+            onChange={this.handleChange} 
+            />
+          
+          <CheckboxInput
+            value={this.state.sendEmail}
+            name="sendEmail"
+            onChange={this.handleChange}
+          />
+
+          {/*<ProductList products={products}/>*/}
 
         </div>
       );
