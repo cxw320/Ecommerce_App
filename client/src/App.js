@@ -8,57 +8,33 @@ import './App.css';
 import BaseInput from './components/inputs/BaseInput.js';
 import TextInput from './components/inputs/TextInput';
 import PasswordInput from './components/inputs/PasswordInput';
-import CheckboxInput from './components/inputs/CheckboxInputs';
+import CheckboxInput from './components/inputs/CheckboxInput';
+import Form from './components/Form.js';
+import {PrimaryButton, SecondaryButton} from './components/Button.js';
+import{
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from 'react-router-dom';
+import './App.css';
+import Home from './pages/Home';
+import FormDemo from './pages/FormDemo';
+import NotFound from './pages/NotFound';
 
 class App extends Component {
-   // state lifting, bringing the state from children to parent component
-   //input controls: onChange , target = the dom element
-
-   state = { firstName: '',
-             lastName: '', 
-             password: '',
-             sendEmail: true,
-    };
-
-   handleChange = e => {
-     this.setState({ [e.target.name]: e.target.value});
-   };
-
   render(){
-
-    //need a key prop, a unique value that is consistent across re-renders
-      return (
+    return (
         <div className="App">
-
-          <TextInput 
-            value={this.state.firstName}
-            name="firstName"
-            onChange={this.handleChange} 
-            />
-
-          <TextInput 
-            value={this.state.lastName}
-            name="lastName"
-            onChange={this.handleChange} 
-            />
-
-          <TextInput 
-            value={this.state.password}
-            name="password"
-            onChange={this.handleChange} 
-            />
-          
-          <CheckboxInput
-            value={this.state.sendEmail}
-            name="sendEmail"
-            onChange={this.handleChange}
-          />
-
-          {/*<ProductList products={products}/>*/}
-
+            <Router>
+                <Switch>
+                    <Route path="/" exact component={Home} />
+                    <Route path="/forms" exact component={FormDemo} />
+                    <Route component={NotFound}/>
+                </Switch>
+            </Router>
         </div>
-      );
-  }
-}
+    )
 
+}
+}
 export default App;
