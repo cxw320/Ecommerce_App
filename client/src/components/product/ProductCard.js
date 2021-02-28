@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import './ProductCard.css';
 
 
-
-
 export default class ProductCard extends Component {
     constructor(props) {
         super(props);

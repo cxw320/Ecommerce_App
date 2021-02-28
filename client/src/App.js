@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
 
 import React, {Component} from 'react';
-import ProductCard from './components/ProductCard';
+import ProductCard from './components/product/ProductCard';
 import products from './data/products.js';
-import ProductList from './components/ProductList';
+import ProductList from './components/product/ProductList';
 import './App.css';
 import BaseInput from './components/inputs/BaseInput.js';
 import TextInput from './components/inputs/TextInput';

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import ProductCard from '../components/ProductCard';
+import ProductCard from '../components/product/ProductCard';
 import products from '../data/products.js';
-import ProductList from '../components/ProductList';
+import ProductList from '../components/product/ProductList';
 import BaseInput from '../components/inputs/BaseInput.js';
 import TextInput from '../components/inputs/TextInput';
 import PasswordInput from '../components/inputs/PasswordInput';
