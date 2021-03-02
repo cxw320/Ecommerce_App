@@ -22,3 +22,4 @@ export const getProduct = async (id) => {
     console.error(error);
   }
 };
+
