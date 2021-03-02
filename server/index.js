@@ -1,4 +1,5 @@
 import express from 'express';
+var cors =require('cors');
 //import users from './mocks/Users.js';
 import bodyParser from 'body-parser';
 import {UserModel} from './models/User.js';
@@ -6,7 +7,12 @@ import {ProductModel} from './models/Product.js';
 import db from './db/index.js';
 
 
+
+
+
+
 const app = express();
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 const port = 8055;
