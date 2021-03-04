@@ -1,4 +1,5 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose from 'mongoose';
+const {Schema} = mongoose;
 
 export const OrderSchema = new Schema({
   customer: Schema.Types.ObjectId,

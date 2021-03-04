@@ -1,14 +1,10 @@
 import express from 'express';
-var cors =require('cors');
+import cors from 'cors';
 //import users from './mocks/Users.js';
 import bodyParser from 'body-parser';
 import {UserModel} from './models/User.js';
 import {ProductModel} from './models/Product.js';
 import db from './db/index.js';
-
-
-
-
 
 
 const app = express();
