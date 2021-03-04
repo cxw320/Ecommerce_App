@@ -1,5 +1,4 @@
 import { render, screen } from '@testing-library/react';
-
 import React, {Component} from 'react';
 import ProductCard from './components/product/ProductCard';
 import products from './data/products.js';
